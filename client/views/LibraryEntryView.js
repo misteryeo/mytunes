@@ -6,7 +6,7 @@ var LibraryEntryView = Backbone.View.extend({
   template: _.template('<td>(<%= artist %>)</td><td><%= title %></td>'),
 
   events: {
-    'click': function() {
+    'click': function() { //*******WARNING!********* this may make problems later since we don't want whatever song we click to play.  Rather, the first song should play and subsequent songs should enqueue.
       this.model.enqueue();
       this.model.play();
     },
