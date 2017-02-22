@@ -4,22 +4,21 @@ var SongQueue = Backbone.Collection.extend({
   model: SongModel,
   
   initialize: function() {
-    this.on('add', function() {
-      if (this.models.length === 1) {
-        this.playFirst();
-      } else {
-        return;
-      }      
-    });
-    this.on('ended', this.removeAtEnd);
-    this.on('dequeue', this.removeAtEnd); // Mr Brodie is worried that dequeued actually means you can remove any song from the song at any location.
+    this.on('add', this.enqueue, this);
+    this.on('dequeue', this.dequeue, this);
+    this.on('ended', this.dequeue, this);
+  },
+  enqueue: function() {
+    if (this.length === 1) {
+      this.playFirst();
+    }
   },
 
   playFirst: function() {
     this.at(0).play();
   },
 
-  removeAtEnd: function() {
+  dequeue: function() {
     this.remove(this.at(0));
     if (this.models.length > 0) {
       this.playFirst();
@@ -27,3 +26,4 @@ var SongQueue = Backbone.Collection.extend({
   }
   
 });
+

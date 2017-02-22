@@ -8,8 +8,8 @@ var LibraryEntryView = Backbone.View.extend({
   events: {
     'click': function() { //*******WARNING!********* this may make problems later since we don't want whatever song we click to play.  Rather, the first song should play and subsequent songs should enqueue.
       this.model.enqueue();
-      this.model.play();
-    },
+      //this.model.play();
+    }
   },
 
   render: function() {
