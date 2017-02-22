@@ -7,8 +7,8 @@ var SongQueueEntryView = Backbone.View.extend({
   
   events: {
     'click': function() {
-      this.model.dequeue;
-    } //whats the syntax here?  in the video he wraps it in an anonymous function and calls it
+      this.model.dequeue();
+    } 
   },
 
   initialize: function() {
